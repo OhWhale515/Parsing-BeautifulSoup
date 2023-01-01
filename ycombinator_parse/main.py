@@ -9,13 +9,13 @@ articles = soup.find_all(name="a", class_="storylink")
 article_texts = []
 article_links = []
 for article_tag in articles:
-    article_text = article_tag.getText()
-    article_texts.append(article_text)
-    article_link = article_tag.get("href")
-    article_links.append(article_link)
+    text = article_tag.getText()
+    article_texts.append(text)
+    link = article_tag.get("href")
+    article_links.append(link)
     
-article_upvotes = soup.find_all(name="span", class_="score").getText()
+article_upvotes = [score.getText() for score in soup.find_all(name="span", class_="score")]
 
-print(article_text)
-print(article_link)
-print(article_upvote)
+print(article_texts)
+print(article_links)
+print(article_upvotes)
